@@ -40,12 +40,10 @@ generate_index() {
     echo ' ] }' >> "$OUT"
 }
 
-# Initial mount + bind + index
 mount_nfs
 bind_mount
 generate_index
 
-# Loop forever
 while true; do
     sleep $((REFRESH_HOURS * 3600))
     generate_index
