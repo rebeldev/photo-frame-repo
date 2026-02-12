@@ -8,10 +8,7 @@
   "arch": ["aarch64", "amd64", "armv7"],
 
   "privileged": [
-    "SYS_ADMIN",
-    "DAC_READ_SEARCH",
-    "DAC_OVERRIDE",
-    "NET_ADMIN"
+    "SYS_ADMIN"
   ],
   "full_access": true,
   "host_network": true,
@@ -34,5 +31,6 @@
     "refresh_minutes": "int"
   }
 }
+
 
 
