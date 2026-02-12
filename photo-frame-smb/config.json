@@ -11,12 +11,7 @@
   "full_access": true,
   "apparmor": "unconfined",
 
-  "privileged": [
-    "SYS_ADMIN",
-    "DAC_READ_SEARCH",
-    "DAC_OVERRIDE",
-    "NET_ADMIN"
-  ],
+  "privileged": ["SYS_ADMIN"],
 
   "options": {
     "server": "192.168.1.241",
@@ -36,4 +31,5 @@
     "refresh_minutes": "int"
   }
 }
+
 
