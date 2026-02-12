@@ -1,22 +1,25 @@
 #!/bin/bash
 
 SERVER=$(jq -r '.server' /data/options.json)
-PATH_ON_NAS=$(jq -r '.path' /data/options.json)
+SHARE=$(jq -r '.share' /data/options.json)
 MOUNTPOINT=$(jq -r '.mountpoint' /data/options.json)
-REFRESH_HOURS=$(jq -r '.refresh_hours' /data/options.json)
+SMB_USER=$(jq -r '.smb_user' /data/options.json)
+SMB_PASS=$(jq -r '.smb_pass' /data/options.json)
+REFRESH_MINUTES=$(jq -r '.refresh_minutes' /data/options.json)
 
-echo "Starting Photo Frame NFS Mount Add-on"
+echo "Starting Photo Frame SMB Mount Add-on"
 echo "Server: $SERVER"
-echo "Path: $PATH_ON_NAS"
+echo "Share: $SHARE"
 echo "Mountpoint: $MOUNTPOINT"
-echo "Refresh every $REFRESH_HOURS hours"
+echo "Refresh every $REFRESH_MINUTES minutes"
 
 mkdir -p "$MOUNTPOINT"
 mkdir -p /config/www/photo-frame
 
-mount_nfs() {
-    echo "Mounting NFS..."
-    mount -t nfs "$SERVER:$PATH_ON_NAS" "$MOUNTPOINT" -o rw,async,nolock
+mount_smb() {
+    echo "Mounting SMB..."
+    mount -t cifs "//$SERVER/$SHARE" "$MOUNTPOINT" \
+        -o username="$SMB_USER",password="$SMB_PASS",vers=3.0,iocharset=utf8,rw
 }
 
 bind_mount() {
@@ -40,11 +43,12 @@ generate_index() {
     echo ' ] }' >> "$OUT"
 }
 
-mount_nfs
+mount_smb
 bind_mount
 generate_index
 
 while true; do
-    sleep $((REFRESH_HOURS * 3600))
+    sleep $((REFRESH_MINUTES * 60))
     generate_index
 done
+
