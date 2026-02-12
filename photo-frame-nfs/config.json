@@ -1,6 +1,6 @@
 {
   "name": "Photo Frame NFS Mount",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "slug": "photo_frame_nfs",
   "description": "Mounts Synology NFS share and generates index.json for screensaver",
   "startup": "services",
@@ -23,3 +23,4 @@
     "refresh_hours": "int"
   }
 }
+
