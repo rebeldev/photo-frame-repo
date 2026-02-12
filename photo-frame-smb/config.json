@@ -1,6 +1,6 @@
 {
   "name": "Photo Frame SMB Mount",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "slug": "photo_frame_smb",
   "description": "Mounts a Synology SMB share and generates index.json for a Home Assistant photo frame.",
   "startup": "services",
@@ -28,6 +28,7 @@
     "refresh_minutes": "int"
   }
 }
+
 
 
 
