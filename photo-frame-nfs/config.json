@@ -1,0 +1,25 @@
+{
+  "name": "Photo Frame NFS Mount",
+  "version": "1.0.0",
+  "slug": "photo_frame_nfs",
+  "description": "Mounts Synology NFS share and generates index.json for screensaver",
+  "startup": "services",
+  "boot": "auto",
+  "init": false,
+  "arch": ["aarch64", "amd64", "armv7"],
+  "host_network": true,
+  "privileged": ["SYS_ADMIN"],
+  "full_access": true,
+  "options": {
+    "server": "rebel-nas.rebeldev.net",
+    "path": "/volume1/Shared/Pictures/Photo Frame",
+    "mountpoint": "/mnt/photo-frame",
+    "refresh_hours": 3
+  },
+  "schema": {
+    "server": "str",
+    "path": "str",
+    "mountpoint": "str",
+    "refresh_hours": "int"
+  }
+}
