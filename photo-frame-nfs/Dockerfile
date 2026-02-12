@@ -1,10 +1,13 @@
 FROM alpine:3.19
 
-RUN apk add --no-cache bash nfs-utils coreutils
+# Install required packages
+RUN apk add --no-cache bash nfs-utils coreutils jq
 
+# Copy the startup script
 COPY run.sh /run.sh
-RUN chmod +x /run.sh
-RUN ls -l /
 
+# Ensure the script is executable
+RUN chmod 755 /run.sh
+
+# Run the script
 CMD ["/run.sh"]
-
